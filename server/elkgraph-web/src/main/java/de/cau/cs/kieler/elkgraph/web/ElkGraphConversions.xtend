@@ -218,6 +218,7 @@ class ElkGraphConversions {
     }
 
     private static def toJson(ElkNode graph) {
+        new ElkGraphDiagramGenerator().applyDefaults(graph)
         return ElkGraphJson.forGraph(graph)
                 .prettyPrint(true)
                 .omitUnknownLayoutOptions(false)

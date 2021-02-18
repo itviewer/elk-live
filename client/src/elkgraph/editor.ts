@@ -72,7 +72,7 @@ setupModelLink(editor, (event) => {
 MonacoServices.install(editor);
 
 // Create the web socket
-const socketUrl = `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/elkgraph`;
+const socketUrl = `${location.protocol === 'https:' ? 'wss' : 'ws'}://124.156.129.166:8080/elkgraph`;
 const socketOptions = {
     maxReconnectionDelay: 10000,
     minReconnectionDelay: 1000,

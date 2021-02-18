@@ -31,7 +31,7 @@ import org.eclipse.sprotty.SPort
 import org.eclipse.sprotty.xtext.IDiagramGenerator
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.eclipse.elk.core.UnsupportedConfigurationException
-
+import org.eclipse.elk.graph.util.ElkGraphUtil
 /**
  * Transforms ELK graphs into sprotty models to be transferred to clients.
  */
@@ -149,7 +149,7 @@ class ElkGraphDiagramGenerator implements IDiagramGenerator {
 	/**
 	 * Apply default layout information to all contents of the given parent node.
 	 */
-	private def void applyDefaults(ElkNode parent) {
+	public def void applyDefaults(ElkNode parent) {
 		for (port : parent.ports) {
 			if (port.width <= 0)
 				port.width = defaultPortSize
@@ -165,9 +165,17 @@ class ElkGraphDiagramGenerator implements IDiagramGenerator {
 			computeLabelSizes(node)
 			applyDefaults(node)
 		}
+        val fixEdges = newArrayList
 		for (edge : parent.containedEdges) {
-			computeLabelSizes(edge)
+			// computeLabelSizes(edge)
+            val bestContainer = ElkGraphUtil.findBestEdgeContainment(edge)
+            if (bestContainer !== null && bestContainer !== parent) {
+                fixEdges.add(edge)
+            }
 		}
+        for (edge : fixEdges) {
+            ElkGraphUtil.updateContainment(edge)
+        }
 	}
 	
 	/**

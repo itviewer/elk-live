@@ -49,7 +49,7 @@
   },
   "scripts": {
     "compile": "tsc",
-    "clean": "rimraf lib app/bootstrap app/jquery app/sprotty app/vs app/*.bundle.js app/*.bundle.js.map elk-models app/elk-models",
+    "clean": "rimraf lib app/bootstrap app/jquery app/sprotty app/vs app/*.bundle.js app/*.bundle.js.map",
     "clone:elk-models": "git -C elk-models pull || git clone https://github.com/eclipse/elk-models.git elk-models",
     "copy:examples": "mkdir -p lib/examples/content/ && cp -r elk-models/examples/* lib/examples/content/",
     "copy:models": "cp --parents `find elk-models/* -type f \\( -iname \\*.json -o -iname \\*.elkt \\)` app/",

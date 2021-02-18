@@ -59,7 +59,7 @@ export interface LdsConfig {
 
 export function openWebSocketElkGraph(config: LdsConfig) {
 
-    const socketUrl = `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/${config.endpoint}`;
+    const socketUrl = `${location.protocol === 'https:' ? 'wss' : 'ws'}://124.156.129.166:8080/${config.endpoint}`;
     const socketOptions = {
         maxReconnectionDelay: 10000,
         minReconnectionDelay: 1000,
